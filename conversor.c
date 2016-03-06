@@ -293,8 +293,10 @@ int main(void){
         p_octal=base10_base8(base16_base10(hexadecimal, tamanho_hexa), &tamanho_octal);
 
         printf("Numero (base 8): ");
-        for(int i=tamanho_octal-1; i >= 0; i++)
+        for(int i=tamanho_octal-1; i >= 0; i--){
+            //printf("i: %i\n", i);
             printf("%d", p_octal[i]);
+        }
 
         printf("\n");
             break;

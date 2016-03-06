@@ -400,31 +400,31 @@ void ler_hexa( char hexa[16], int *tamanho){
     for( int i=0; i < 16; i++){
         if( hexa[i] == 'A' || hexa[i] == 'a' ){ 
             hexa[i] = 10;
-            *tamanho += 1;
+            *tamanho = *tamanho + 1;
         }
         else if( hexa[i] == 'B' || hexa[i] == 'b' ){ 
             hexa[i] = 11;
-            *tamanho += 1;
+            *tamanho = *tamanho + 1;
         }
         else if( hexa[i] == 'C' || hexa[i] == 'c' ){
             hexa[i] = 12;
-            *tamanho += 1;
+            *tamanho = *tamanho + 1;
         }
         else if( hexa[i] == 'D' || hexa[i] == 'd' ){ 
             hexa[i] = 13;
-            *tamanho += 1;
+            *tamanho = *tamanho + 1;
         }
         else if( hexa[i] == 'E' || hexa[i] == 'e' ){ 
             hexa[i] = 14;
-            *tamanho += 1;
+            *tamanho = *tamanho + 1;
         }
         else if( hexa[i] == 'F' || hexa[i] == 'f' ){
             hexa[i] = 15;
-            *tamanho += 1;
+            *tamanho = *tamanho + 1;
         }
         else if( hexa[i] > 47 && hexa[i] < 58){
             hexa[i] = hexa[i] - 48;
-            *tamanho += 1;
+            *tamanho = *tamanho + 1;
         }
         
     }
@@ -443,7 +443,7 @@ void ler_hexa( char hexa[16], int *tamanho){
         }
     }
 
-  /*
+ /* 
     printf("Debug Hexa: ");
     for(int i=0; i < *tamanho; i++)
         printf("%d ", hexa[i]);
@@ -451,6 +451,7 @@ void ler_hexa( char hexa[16], int *tamanho){
 
     printf("Debug Tamanho Hexa: %d\n", *tamanho);
   */
+ 
 
 }
 
