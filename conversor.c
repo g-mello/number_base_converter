@@ -29,6 +29,7 @@ int main(void){
     int op;
 
     // Menu
+
     printf("==================== Menu ====================\n");
     printf("1. Base2 para Base8\n");
     printf("2. Base2 para Base10\n");
@@ -42,12 +43,13 @@ int main(void){
     printf("10. Base16 para Base2.\n");
     printf("11. Base16 para Base8.\n");
     printf("12. Base16 para Base10.\n");
-    printf(">> ");
+    printf("Opção: ");
     do{
         scanf("%d", &op);
     }while( op > 12 || op < 0);
 
     switch(op){
+
         case 1:
             printf("Numero (base 2): ");
             scanf("%d", &numero);
@@ -122,7 +124,7 @@ int main(void){
             printf("\n");
 
 
-             
+            
             printf("\n");
 
             break;
@@ -266,55 +268,55 @@ int main(void){
             break;
 
         case 10:
-           printf("Numero (base 16): ");
-           scanf("%s", hexadecimal);
+        printf("Numero (base 16): ");
+        scanf("%s", hexadecimal);
 
-           // Leitura
-           ler_hexa(hexadecimal, &tamanho_hexa);
-           p_binario=base16_base2(hexadecimal, tamanho_hexa, &tamanho_binario);
-           //p_binario=base10_base2(base16_base10(hexadecimal, tamanho_hexa), &tamanho_binario);
+        // Leitura
+        ler_hexa(hexadecimal, &tamanho_hexa);
+        p_binario=base16_base2(hexadecimal, tamanho_hexa, &tamanho_binario);
+        //p_binario=base10_base2(base16_base10(hexadecimal, tamanho_hexa), &tamanho_binario);
 
-           printf("Numero (base 2): ");
-           for(int i=0; i < tamanho_binario; i++)
-               printf("%d", p_binario[i]);
-           printf("\n");
+        printf("Numero (base 2): ");
+        for(int i=0; i < tamanho_binario; i++)
+            printf("%d", p_binario[i]);
+        printf("\n");
 
             break;
 
         case 11:
-           printf("Numero (base 16): ");
-           scanf("%s", hexadecimal);
+        printf("Numero (base 16): ");
+        scanf("%s", hexadecimal);
 
-           // Leitura
-           ler_hexa(hexadecimal, &tamanho_hexa);
-           //p_octal=base8_base2(hexadecimal, tamanho_hexa, &tamanho_octal);
-           p_octal=base10_base8(base16_base10(hexadecimal, tamanho_hexa), &tamanho_octal);
+        // Leitura
+        ler_hexa(hexadecimal, &tamanho_hexa);
+        //p_octal=base8_base2(hexadecimal, tamanho_hexa, &tamanho_octal);
+        p_octal=base10_base8(base16_base10(hexadecimal, tamanho_hexa), &tamanho_octal);
 
-           printf("Numero (base 8): ");
-           for(int i=tamanho_octal-1; i >= 0; i++)
-               printf("%d", p_octal[i]);
+        printf("Numero (base 8): ");
+        for(int i=tamanho_octal-1; i >= 0; i++)
+            printf("%d", p_octal[i]);
 
-           printf("\n");
+        printf("\n");
             break;
 
         case 12:
-           printf("Numero (base 16): ");
-           scanf("%s", hexadecimal);
-           tamanho_hexa=16;
+        printf("Numero (base 16): ");
+        scanf("%s", hexadecimal);
+        tamanho_hexa=16;
 
-           // Leitura
-           ler_hexa(hexadecimal, &tamanho_hexa);
-           decimal=base16_base10(hexadecimal, tamanho_hexa);
+        // Leitura
+        ler_hexa(hexadecimal, &tamanho_hexa);
+        decimal=base16_base10(hexadecimal, tamanho_hexa);
 
-           printf("Numero (base 10): %d\n", decimal);
+        printf("Numero (base 10): %d\n", decimal);
 
-           printf("\n");
+        printf("\n");
             break;
 
 
-    }
+    } // switch
 
-	return 0;
+    return 0;
 
 }
 

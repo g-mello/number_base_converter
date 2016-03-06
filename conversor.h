@@ -11,6 +11,8 @@
 
 // Funções Conversoras 
 int *base10_base2( int n_base10, int *tamanho){
+    // Função que faz a tradução de base10 para base2, incluindo numeros
+    // em negativo usando complemento de 2
 
     // Aloca um vetor int de 64 posições 
     int *binario;
@@ -27,26 +29,27 @@ int *base10_base2( int n_base10, int *tamanho){
             n_base10 = n_base10 / 2;
         }
 
-        // sinal positivo
+        // sinal 
         binario[*tamanho]=0; 
         *tamanho = *tamanho + 1;
 
     }
     
     // Conversão de numero decimal negativo em binário negativo 
+    // n_base10 < 0 
     else{
-        
+
         // passa pra positivo
         n_base10= -1 * n_base10;
 
-        // magnitude para o numero positivo 
+        // magnitude 
         while( n_base10> 0 ){
             binario[*tamanho]=n_base10%2;        
             *tamanho = *tamanho + 1;
             n_base10 = n_base10 / 2;
         }
 
-        // add sinal positivo
+        // sinal positivo
         binario[*tamanho]=0; 
         *tamanho = *tamanho + 1;
         
@@ -72,6 +75,7 @@ int *base10_base2( int n_base10, int *tamanho){
 }
 
 char *base10_base16( int n_base10, int *tamanho){
+    // Função que traduz da numeros da base10 para base16 
 
     
     // Aloca um vetor char de 16 posições
@@ -97,6 +101,7 @@ char *base10_base16( int n_base10, int *tamanho){
 }
 
 int *base10_base8( int n_base10, int *tamanho){
+    // Função que faz a tradução de base10 para base8
 
         // Aloca um vetor inteiro de 21 posições 
         int *octais;
@@ -121,6 +126,8 @@ int *base10_base8( int n_base10, int *tamanho){
 }
 
 int base2_base10c2( int n_base2[], int tamanho){
+    // Função para fazer a tradução da base2 em binario em Complemento de 2
+    // para base 10
 
     float n_base10=0;
 
@@ -160,7 +167,7 @@ int base2_base10c2( int n_base2[], int tamanho){
                 }
             }
             
-            // Calcular a base10
+            // Calcula o número na base10
             for(int i=0; i <= tamanho; i++){
                 if( n_base2[i] == 1 )
                     n_base10 += pow(2,(-1*(i-(tamanho-1))));
@@ -173,6 +180,7 @@ int base2_base10c2( int n_base2[], int tamanho){
 
 }
 int base2_base10( int n_base2[], int tamanho){
+    // Função para fazer a tradução da base2 para base10
 
     float n_base10=0;
 
@@ -196,6 +204,7 @@ int base2_base10( int n_base2[], int tamanho){
 
 
 int base8_base10(int n_base8[], int tamanho){
+    //Função para fazer a tradução da base8 para base10
     
       int n_base10 = 0;
       
@@ -207,6 +216,7 @@ int base8_base10(int n_base8[], int tamanho){
             }
       }
 
+      // encontra o número na base10
       for(int i = 0; i < tamanho; i++){
           n_base10 += n_base8[i] * pow(8, (-1*(i-(tamanho-1))));
       }
@@ -215,9 +225,11 @@ int base8_base10(int n_base8[], int tamanho){
 }
 
 int base16_base10(char n_base16[], int tamanho){
+    // Função que faz a tradução da base16 para base10
     
       int n_base10 = 0;
 
+      // Encontra o número na base 10
       for(int i = 0; i < tamanho; i++){
           n_base10 += n_base16[i] * pow(16,-1*(i-(tamanho-1)) );
       }
@@ -227,6 +239,7 @@ int base16_base10(char n_base16[], int tamanho){
 }
 
 int *base16_base2( char n_base16[], int tamanho_hexa, int *tamanho_binario){
+    // Função que faz a tradução de base16 para base 2
 
     int *binario = (int *) calloc(64, sizeof(int));
     int aux[4];
@@ -234,6 +247,8 @@ int *base16_base2( char n_base16[], int tamanho_hexa, int *tamanho_binario){
     *tamanho_binario=0;
     int j;
 
+    // Encontra o numero ba base 2 a partir da quantidade de números na base 16
+    // usando um vetor auxiliar de tamanho 4
     for(int i=0; i < tamanho_hexa; i++){
 
         n_base10 = n_base16[i];
@@ -254,27 +269,25 @@ int *base16_base2( char n_base16[], int tamanho_hexa, int *tamanho_binario){
                 aux[i]=0;
             }
 
+            // encontra o binario, mas de forma invertida
             j=0;
             while( n_base10 != 0 ){
                 aux[j] = n_base10 % 2;
-                printf("aux[%i]: %d \n", j, aux[j]);
+                //printf("aux[%i]: %d \n", j, aux[j]);
                 j = j+1;
 
                 n_base10 = n_base10 / 2;
             }
 
-            // Desinverte 
-            //j=3;
-            //while( j != 0){
-
+            // desinverter o binario e salva no vetor binario
             for(int j=3; j >= 0; j--){
+
                 binario[*tamanho_binario] = aux[j];
-                printf("desinvt binario[%i]: %d \n", *tamanho_binario, aux[j]);
+                //printf("desinvt binario[%i]: %d \n", *tamanho_binario, aux[j]);
+                
                 *tamanho_binario = *tamanho_binario + 1;
              }
 
-             //   j--;
-            //}
         }
 
     }
@@ -300,7 +313,7 @@ void ler_binario(int binario[64], int *tamanho, int numero){
     } 
 
     // Validação do número
-    for(int i=0; i < *tamanho; i++)
+    for(int i=0; i < *tamanho; i++){
         if( binario[i] != 1 && binario[i] != 0 ){
             printf("Erro: Numero não pertence a base 2.\n");
 
@@ -311,6 +324,7 @@ void ler_binario(int binario[64], int *tamanho, int numero){
             *tamanho = 0;
             exit(1);
         } 
+    }
 
     // Inverter vetor
     for(int i=0; i < *tamanho; i++){
@@ -322,12 +336,13 @@ void ler_binario(int binario[64], int *tamanho, int numero){
         binario[i] = aux[i];
     }
     
-    // Debug: mostrar binario final
+    /*
     printf("Debug Binario: ");
     for(int i=0; i < *tamanho; i++){
         printf("%d", binario[i]);
     }
     printf("\n");
+    */
 }
 
 void ler_octal( int octal[21], int *tamanho, int numero){
@@ -368,11 +383,13 @@ void ler_octal( int octal[21], int *tamanho, int numero){
     }
     
     // Debug: mostrar Octal final
+    /*
     printf("Debug Octal: ");
     for(int i=0; i < *tamanho; i++){
         printf("%d", octal[i]);
     }
     printf("\n");
+    */
 }
 
 void ler_hexa( char hexa[16], int *tamanho){
@@ -426,13 +443,14 @@ void ler_hexa( char hexa[16], int *tamanho){
         }
     }
 
-
+  /*
     printf("Debug Hexa: ");
     for(int i=0; i < *tamanho; i++)
         printf("%d ", hexa[i]);
     printf("\n");
 
     printf("Debug Tamanho Hexa: %d\n", *tamanho);
+  */
 
 }
 
