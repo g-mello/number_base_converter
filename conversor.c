@@ -260,10 +260,9 @@ int main(void){
         case 11:
            printf("Numero (base 16): ");
            scanf("%s", hexadecimal);
-           tamanho_hexa=16;
 
            // Leitura
-           ler_hexa(hexadecimal, tamanho_hexa);
+           ler_hexa(hexadecimal, &tamanho_hexa);
            p_octal=base10_base8(base16_base10(hexadecimal, tamanho_hexa), &tamanho_octal);
 
            printf("Numero (base 8): ");
@@ -279,7 +278,7 @@ int main(void){
            tamanho_hexa=16;
 
            // Leitura
-           ler_hexa(hexadecimal, tamanho_hexa);
+           ler_hexa(hexadecimal, &tamanho_hexa);
            decimal=base16_base10(hexadecimal, tamanho_hexa);
 
            printf("Numero (base 10): %d\n", decimal);

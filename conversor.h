@@ -76,7 +76,7 @@ char *base10_base16( int n_base10, int *tamanho){
     
     // Aloca um vetor char de 16 posições
     char *hexadecimais;
-    hexadecimais = (char *) calloc(16, 16 * sizeof(char));
+    hexadecimais = (char *) calloc(16, sizeof(char));
 
     *tamanho=0;
 
@@ -100,7 +100,7 @@ int *base10_base8( int n_base10, int *tamanho){
 
         // Aloca um vetor inteiro de 21 posições 
         int *octais;
-        octais = (int *) calloc(21, 21 * sizeof(char));
+        octais = (int *) calloc(21, sizeof(char));
 
         *tamanho=0;
 
@@ -219,7 +219,7 @@ int base16_base10(char n_base16[], int tamanho){
       int n_base10 = 0;
 
       for(int i = 0; i < tamanho; i++){
-          n_base10 += n_base16[i] * pow(16,i );
+          n_base10 += n_base16[i] * pow(16,-1*(i-(tamanho-1)) );
       }
 
       return n_base10;
@@ -242,7 +242,7 @@ int *base16_base2( char n_base16[], int tamanho_hexa, int *tamanho_binario){
             while( j != 4 ){
                 binario[*tamanho_binario] = 0;
                 *tamanho_binario += 1;
-    
+
                 j++;
             }
         }
@@ -255,12 +255,14 @@ int *base16_base2( char n_base16[], int tamanho_hexa, int *tamanho_binario){
                 n_base10 = n_base10 / 2;
             }
         }
-        
+
     }
 
     return binario;
-        
+
 }
+
+
 
 // Funções auxiliares
 void ler_binario(int binario[64], int *tamanho, int numero){
