@@ -1,7 +1,7 @@
 #Number Base Converter
 
-  A basic number base converter written in c. 
-  It can converter: <br /> 
+  A basic number base converter written in c. <br />
+  It can convert: <br /> 
   from Base 2 to Base 8 <br />
   from Base 2 to Base 10 <br />
   from Base 2 to Base 16 <br />
