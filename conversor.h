@@ -14,7 +14,7 @@ int *base10_base2( int n_base10, int *tamanho){
 
     // Aloca um vetor int de 64 posições 
     int *binario;
-    binario = (int *) calloc(64, 64 * sizeof(int));
+    binario = (int *) calloc(64, sizeof(int));
     *tamanho=0;
 
     // Conversão de numero decimal positivo em binário positivo

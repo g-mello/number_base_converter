@@ -129,7 +129,11 @@ int main(void){
 
         case 4:
             printf("Numero (base 8): ");
-            scanf("%d", &numero);
+            do{
+                scanf("%d", &numero);
+                if( numero < 0 )
+                    printf("Numero Inválido.\nNumero (base 8): ");
+            }while( numero < 0 );
 
             // Leitura e conversão do numero na base 8 para base 2
             ler_octal( octal, &tamanho_octal, numero); 
@@ -145,7 +149,11 @@ int main(void){
 
         case 5:
             printf("Numero (base 8): ");
-            scanf("%d", &numero);
+            do{
+                scanf("%d", &numero);
+                if( numero < 0 )
+                    printf("Número inválido.\nNumero ( base 8): ");
+            }while( numero < 0 );
 
             // Leitura e conversão do numero na base 8 para base 2
             ler_octal( octal, &tamanho_octal, numero); 
@@ -157,7 +165,11 @@ int main(void){
             break;
         case 6:
             printf("Numero (base 8): ");
-            scanf("%d", &numero);
+            do{
+                scanf("%d", &numero);
+                if( numero < 0 )
+                    printf("Numero Inválido.\nNumero (base 8): ");
+            }while( numero < 0 );
 
             // Leitura e conversão do numero na base 8 para base 16
             ler_octal( octal, &tamanho_octal, numero); 
@@ -187,7 +199,11 @@ int main(void){
 
         case 7:
             printf("Numero (base 10): ");
-            scanf("%d", &decimal);
+            do{
+                scanf("%d", &decimal);
+                if( decimal < 0 )
+                    printf("Numero Inválido.\nNumero (base 10): ");
+            }while( decimal < 0 );
 
             p_binario = base10_base2(decimal, &tamanho_binario);
 
@@ -200,7 +216,11 @@ int main(void){
 
         case 8:
             printf("Numero (base 10): ");
-            scanf("%d", &decimal);
+            do{
+                scanf("%d", &decimal);
+                if( decimal < 0 )
+                    printf("Numero Inválido.\nNumero (base 10): ");
+            }while( decimal < 0 );
 
             p_octal=base10_base8(decimal, &tamanho_octal);
 
@@ -213,7 +233,11 @@ int main(void){
 
         case 9:
             printf("Numero (base 10): ");
-            scanf("%d", &decimal);
+            do{
+                scanf("%d", &decimal);
+                if( decimal < 0 )
+                    printf("Numero Inválido.\nNumero (base 10): ");
+            }while( decimal < 0 );
 
             p_hexadecimal=base10_base16(decimal, &tamanho_hexa);
 
@@ -263,10 +287,11 @@ int main(void){
 
            // Leitura
            ler_hexa(hexadecimal, &tamanho_hexa);
+           //p_octal=base8_base2(hexadecimal, tamanho_hexa, &tamanho_octal);
            p_octal=base10_base8(base16_base10(hexadecimal, tamanho_hexa), &tamanho_octal);
 
            printf("Numero (base 8): ");
-           for(int i=tamanho_octal-1; i >= 0; i--)
+           for(int i=tamanho_octal-1; i >= 0; i++)
                printf("%d", p_octal[i]);
 
            printf("\n");
