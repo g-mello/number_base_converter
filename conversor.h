@@ -226,6 +226,42 @@ int base16_base10(char n_base16[], int tamanho){
 
 }
 
+int *base16_base2( char n_base16[], int tamanho_hexa, int *tamanho_binario){
+
+    int *binario = (int *) calloc(64, sizeof(int));
+    int n_base10;
+    *tamanho_binario=0;
+    int j;
+
+    for(int i=0; i < tamanho_hexa; i++){
+
+        n_base10 = n_base16[i];
+
+        if( n_base16[i] == 0 ){
+            j=0;
+            while( j != 4 ){
+                binario[*tamanho_binario] = 0;
+                *tamanho_binario += 1;
+    
+                j++;
+            }
+        }
+        else{
+
+            while( n_base10 != 0 ){
+                binario[*tamanho_binario] = n_base10 % 2;
+                *tamanho_binario = *tamanho_binario +1;
+
+                n_base10 = n_base10 / 2;
+            }
+        }
+        
+    }
+
+    return binario;
+        
+}
+
 // Funções auxiliares
 void ler_binario(int binario[64], int *tamanho, int numero){
 
@@ -316,54 +352,64 @@ void ler_octal( int octal[21], int *tamanho, int numero){
     printf("\n");
 }
 
-void ler_hexa( char hexa[16], int tamanho){
+void ler_hexa( char hexa[16], int *tamanho){
 
-  /* 
-    *tamanho=0;
-
-    // Contagem do tamanho do numero hexadecimal
-    for(int i=0; i < 16; i++){
-        if( hexa[i] == 49){
-            break;
-        }
-        else 
-            *tamanho = *tamanho + 1;
-    }
-*/ 
-   
+    *tamanho = 0;
 
     // Converter as letras em numeros
-    for( int i=0; i < tamanho; i++){
-        if( hexa[i] == 'A' || hexa[i] == 'a' ) 
+    for( int i=0; i < 16; i++){
+        if( hexa[i] == 'A' || hexa[i] == 'a' ){ 
             hexa[i] = 10;
-        else if( hexa[i] == 'B' || hexa[i] == 'b' ) 
+            *tamanho += 1;
+        }
+        else if( hexa[i] == 'B' || hexa[i] == 'b' ){ 
             hexa[i] = 11;
-        else if( hexa[i] == 'C' || hexa[i] == 'c' ) 
+            *tamanho += 1;
+        }
+        else if( hexa[i] == 'C' || hexa[i] == 'c' ){
             hexa[i] = 12;
-        else if( hexa[i] == 'D' || hexa[i] == 'd' ) 
+            *tamanho += 1;
+        }
+        else if( hexa[i] == 'D' || hexa[i] == 'd' ){ 
             hexa[i] = 13;
-        else if( hexa[i] == 'E' || hexa[i] == 'e' ) 
+            *tamanho += 1;
+        }
+        else if( hexa[i] == 'E' || hexa[i] == 'e' ){ 
             hexa[i] = 14;
-        else if( hexa[i] == 'F' || hexa[i] == 'f' ) 
+            *tamanho += 1;
+        }
+        else if( hexa[i] == 'F' || hexa[i] == 'f' ){
             hexa[i] = 15;
-        else if( hexa[i] > 47 && hexa[i] < 58)
+            *tamanho += 1;
+        }
+        else if( hexa[i] > 47 && hexa[i] < 58){
             hexa[i] = hexa[i] - 48;
+            *tamanho += 1;
+        }
         
     }
 
     //Validação
-    for( int i=0; i < tamanho; i++){
+    for( int i=0; i < *tamanho; i++){
         if( hexa[i] < 0 ){
             printf("Erro: Numero não pertence a base 16.\n");
 
             // Apaga o vetor e o tamanho
-            for(int j=0; j < tamanho; j++)
+            for(int j=0; j < *tamanho; j++)
                 hexa[j] = 0;
 
             tamanho = 0;
             exit(1);
         }
     }
+
+
+    /*
+    printf("Debug Hexa: ");
+    for(int i=0; i < *tamanho-1; i++)
+        printf("%d", hexa[i]);
+    printf("\n");
+    */
 
 }
 

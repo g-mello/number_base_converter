@@ -24,7 +24,7 @@ int main(void){
 
     char *p_hexadecimal;
     int tamanho_hexa=0;
-    char hexadecimal[16]={0};
+    char hexadecimal[16];
 
     int op;
 
@@ -137,7 +137,7 @@ int main(void){
 
             // mostra o valor na base 2
             printf("Numero (base 2): ");
-            for(int i=tamanho_binario-1; i >= 0; i--)
+            for(int i=tamanho_binario-2; i >= 0; i--)
                 printf("%d", p_binario[i]);
             printf("\n");
 
@@ -244,14 +244,14 @@ int main(void){
         case 10:
            printf("Numero (base 16): ");
            scanf("%s", hexadecimal);
-           tamanho_hexa=16;
 
            // Leitura
-           ler_hexa(hexadecimal, tamanho_hexa);
-           p_binario=base10_base2(base16_base10(hexadecimal, tamanho_hexa), &tamanho_binario);
+           ler_hexa(hexadecimal, &tamanho_hexa);
+           p_binario=base16_base2(hexadecimal, tamanho_hexa, &tamanho_binario);
+           //p_binario=base10_base2(base16_base10(hexadecimal, tamanho_hexa), &tamanho_binario);
 
            printf("Numero (base 2): ");
-           for(int i=tamanho_binario-1; i >= 0; i--)
+           for(int i=0; i < tamanho_binario; i++)
                printf("%d", p_binario[i]);
            printf("\n");
 
