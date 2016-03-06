@@ -229,6 +229,7 @@ int base16_base10(char n_base16[], int tamanho){
 int *base16_base2( char n_base16[], int tamanho_hexa, int *tamanho_binario){
 
     int *binario = (int *) calloc(64, sizeof(int));
+    int aux[4];
     int n_base10;
     *tamanho_binario=0;
     int j;
@@ -248,12 +249,32 @@ int *base16_base2( char n_base16[], int tamanho_hexa, int *tamanho_binario){
         }
         else{
 
+            // zera auxiliar
+            for(int i=0; i < 4; i++){
+                aux[i]=0;
+            }
+
+            j=0;
             while( n_base10 != 0 ){
-                binario[*tamanho_binario] = n_base10 % 2;
-                *tamanho_binario = *tamanho_binario +1;
+                aux[j] = n_base10 % 2;
+                printf("aux[%i]: %d \n", j, aux[j]);
+                j = j+1;
 
                 n_base10 = n_base10 / 2;
             }
+
+            // Desinverte 
+            //j=3;
+            //while( j != 0){
+
+            for(int j=3; j >= 0; j--){
+                binario[*tamanho_binario] = aux[j];
+                printf("desinvt binario[%i]: %d \n", *tamanho_binario, aux[j]);
+                *tamanho_binario = *tamanho_binario + 1;
+             }
+
+             //   j--;
+            //}
         }
 
     }
@@ -406,12 +427,12 @@ void ler_hexa( char hexa[16], int *tamanho){
     }
 
 
-    /*
     printf("Debug Hexa: ");
-    for(int i=0; i < *tamanho-1; i++)
-        printf("%d", hexa[i]);
+    for(int i=0; i < *tamanho; i++)
+        printf("%d ", hexa[i]);
     printf("\n");
-    */
+
+    printf("Debug Tamanho Hexa: %d\n", *tamanho);
 
 }
 
